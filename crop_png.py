@@ -57,6 +57,7 @@ class Crop_png():
     def crop_images(self): 
         puzzle_num=1
         pages = os.listdir(self.input_dir) 
+        puzzle_order=[]
         for page in pages: 
             image = cv2.imread(f"{self.input_dir}/{page}")
             for board in [self.top_left_board, self.mid_left_board, self.bottom_left_board, 
@@ -66,9 +67,12 @@ class Crop_png():
                 #cv2.imshow("Cropped", crop_image)
                 cv2.imwrite(f"{self.output_dir}/Puzzle_{puzzle_num}.png", crop_image)
                 cv2.waitKey(0)
-                print(f"Finished puzzle number {puzzle_num}") 
+                print(f"Saved puzzle no. {puzzle_num} in {self.output_dir}") 
+                puzzle_order.append(puzzle_num) 
                 puzzle_num+=1 
-        return 
+
+        print(f"\n***\nPuzzle order returned from 'crop_images' = {puzzle_order}\n***\n") 
+        return puzzle_order 
 
 """
 from PIL import Image
@@ -85,7 +89,7 @@ img2.save('page_10_cropped.jpg')
 
 if __name__ == "__main__": 
     crop_obj = Crop_png( input_dir="stage_1_training_png", output_dir="puzzles_png" ) 
-    crop_obj.crop_images() 
+    puzzle_order = crop_obj.crop_images() 
     
     
     
