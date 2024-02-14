@@ -45,17 +45,15 @@ def resize_images(big_image, small_image_order ):
     return 
 resize_images(big_image, puzzle_order) 
 
-#exit() 
-#filenames = ["puzzles_png/Puzzle_1.png", "puzzles_png/Puzzle_2.png"] 
-images = []
 
+images = []
 for puzzle_number in puzzle_order: 
     cover_p = "puzzles_png/cover_page.png"
     images.append(imageio.imread(cover_p))
     file = f"puzzles_png/Puzzle_{puzzle_number}_PADDED.png" 
     images.append(imageio.imread(file))
     print(f"Appended puzzle no. {puzzle_number} to the video") 
-imageio.mimsave('./movie.avi', images, duration=2.0 )
+imageio.mimwrite('./movie.gif', images , duration=2.0  )
 
 exit() 
 
