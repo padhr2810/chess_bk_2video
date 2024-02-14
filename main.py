@@ -53,7 +53,17 @@ for puzzle_number in puzzle_order:
     file = f"puzzles_png/Puzzle_{puzzle_number}_PADDED.png" 
     images.append(imageio.imread(file))
     print(f"Appended puzzle no. {puzzle_number} to the video") 
-imageio.mimwrite('./movie.gif', images , duration=2.0  )
+    
+### imageio.mimwrite('./movie.gif', images , duration=20.0  )
+
+kargs = { 'duration': 1500 }
+imageio.mimsave('./movie.gif', images, 'GIF', **kargs)
+print(f"\n***\nSaved movie.gif\n***\n") 
+
+import moviepy.editor as mp
+
+clip = mp.VideoFileClip("movie.gif")
+clip.write_videofile("movie.mp4")
 
 exit() 
 
